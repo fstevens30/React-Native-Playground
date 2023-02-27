@@ -1,57 +1,107 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View, Button, Switch } from 'react-native';
+import React from "react";
+import {StyleSheet, View, Text, Button, ScrollView} from "react-native";
 
-export default class App extends React.Component {
+// Setting Up the main components
 
-  state = {
-    value: 0,
-    totalTaps: 0
-  }
-
-  increment = () => {
-    this.setState({
-      value: this.state.value + 1,
-      totalTaps: this.state.totalTaps + 1
-    })
-    console.log("Value: " + (this.state.value + 1))
-  }
-
-  decrement = () => {
-    this.setState({
-      value: this.state.value - 1,
-      totalTaps: this.state.totalTaps + 1
-    })
-    console.log("Value: " + (this.state.value - 1))
-  }
-
-  render() {
-  return (
-    <View style={styles.container}>
-      <Text style={{fontSize: 75, marginBottom: -20}} >{this.state.value}</Text>
-      <Text style={{fontSize: 20, padding: 20}} >{this.state.totalTaps}</Text>
-      <StatusBar style="auto" />
-      <View style={{flexDirection: 'row'}}>
-        <Button title="Decrease" onPress={this.decrement} color="red" />
-        <Text>   </Text>
-        <Button title="Increase" onPress={this.increment} color="green" backgroundColor="blue" />
+const Header = () => {
+    return (
+        <View>
+        <Text style={styles.bigRed}>This is the header component!</Text>
         </View>
-      <View style={{flexDirection: 'row'}}>
-        <Button title="Reset" onPress={() => this.setState({value: 0, totalTaps: 0})} />
-        </View>
-      <View style={{flexDirection: 'row'}}>
-        <Switch title="Toggle" onValueChange={this.setState = "false"} value = "true" />
-        </View>
-    </View>
-  );
-  }
-}
+    );
+    }
 
+const Footer = () => {
+    return (
+        <View>
+        <Text style={styles.bigBlue}>This is the footer component!</Text>
+        </View>
+    );
+    }
+
+const Content = () => {
+    return (
+        <View >
+        <Text style={styles.content}>This is the content component!</Text>
+        </View>
+    );
+    }
+
+const AnotherButton = () => {
+    return (
+        <Button title="Click Me!" onPress={console.log("Button Clicked!")} style={styles.button} />
+    );
+    }
+
+
+// Setting up the style sheet
+    
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'lightblue',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    bigRed: {
+        color: 'red',
+        fontWeight: 'bold',
+        fontSize: 30,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        padding: 10,
+    },
+
+    bigBlue: {
+        color: 'blue',
+        fontWeight: 'bold',
+        fontSize: 30,
+        display: 'flex',
+        padding: 10,
+        alignSelf: 'center',
+    },
+
+    button: {
+      backgroundColor: 'yellow',
+      color: 'white',
+      padding: 10,
+      fontSize: 20,
+      textAlign: 'center',
+      width: 250,
+      height: 70,
+      borderRadius: 10,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      textAlign: 'center',
+      alignSelf: 'center',
+    },
+
+    container: {
+        flex: 1,
+        backgroundColor: '#ff0fff',
+        flexDirection: 'column',
+    },
+
+    content: {
+        backgroundColor: '#fff',
+        color: '#000',
+        padding: 10,
+        fontSize: 40,
+        textAlign: 'center',
+        alignSelf: 'center',
+        width: '100%',
+        height: '100%',
+    }
+
+
+    });
+
+    // Display components in the app
+
+    export default function App() {
+        return (
+            <ScrollView style = {styles.container}>
+                <Header/>
+                <Content />
+                <AnotherButton />
+                <Footer />
+            </ScrollView>
+        );
+    }
